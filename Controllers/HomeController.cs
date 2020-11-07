@@ -87,7 +87,6 @@ namespace YungChing.Controllers
             
                     else 
                     {
-
                        Session["uname"] = q2.FirstOrDefault().uName;
                        Session["uphoto"] = q2.FirstOrDefault().uPhoto;
                        Session["uid"] = q2.FirstOrDefault().uId.ToString();

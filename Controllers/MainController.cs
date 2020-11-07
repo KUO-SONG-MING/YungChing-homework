@@ -10,6 +10,14 @@ namespace YungChing.Controllers
     public class MainController : Controller
     {
         永慶房屋Entities db = new 永慶房屋Entities();
+
+        public ActionResult detail(string id) 
+        {
+            houseSheet detail = new houseSheet();
+            detail = (new CHouseFactory()).getHouseDetail(id);
+            return View(detail);
+        }
+
         public ActionResult mainPage()
         {
             if (Session["uid"] != null)

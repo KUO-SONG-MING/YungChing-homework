@@ -4,60 +4,42 @@
     ViewBag.Title = "mainPage";
 }
 
-<div style="text-align:right;">
-    <h4 id="userName"></h4>
-</div>
-
-@*@{int count = 0;}*@
 @if (Session["uname"] != null)
 {
-<script>
+    <script>
         document.getElementById("userName").innerHTML = "@Session["uname"]"
-        @*if (@count == 0) {
-            alert("歡迎回來 @Session["uname"]");
-        }*@
-</script>
-    //count++;
+        document.getElementById("IMG").src = "@Session["uphoto"]"
+    </script>
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.hName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hText)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hPhoto)
-        </th>
-        <th></th>
-    </tr>
+    <div style="text-align:right;margin-bottom:10px;">
+        <h4 id="userName"></h4>
+        <img id="IMG" src="" style="width:40px;height:40px;border-radius:999em;" />
+    </div>
 
-    @foreach (var item in Model)
-    {
+    <table class="table">
         <tr>
-            <td style="display:none;">
-                @Html.DisplayFor(modelItem => item.hId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.hName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.hText)
-            </td>
-            <td>
-                <img src="@item.hPhoto"  style="width:150px;height:150px;">
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+            <th style="vertical-align: middle; text-align:center;">
+                建案名稱
+            </th>
+            <th style="vertical-align: middle; text-align:center;">
+                外觀照片
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="vertical-align: middle; text-align:center;">
+                    @Html.DisplayFor(modelItem => item.hName)
+                </td>
+                <td style="vertical-align: middle; text-align:center;">
+                    <img src="@item.hPhoto" style="width:150px;height:150px;">
+                </td>
+                <td style="vertical-align: middle; text-align:center;">
+                    @Html.ActionLink("詳細資料", "detail", "main", new { id = item.hId.ToString() }, null)
+                </td>
+            </tr>
+        }
+    </table>

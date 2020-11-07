@@ -133,11 +133,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdvertisementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CAD.cs" />
+    <Compile Include="Models\CHouseFactory.cs" />
     <Compile Include="Models\CMember.cs" />
     <Compile Include="Models\commercialSheet.cs">
       <DependentUpon>永慶房屋DB.tt</DependentUpon>
@@ -186,6 +189,7 @@
     <Content Include="Views\Home\signIn.cshtml" />
     <Content Include="Views\Home\signUp.cshtml" />
     <Content Include="Views\Main\mainPage.cshtml" />
+    <Content Include="Views\Main\detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -195,6 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Advertisement\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

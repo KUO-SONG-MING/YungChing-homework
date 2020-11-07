@@ -1,0 +1,15 @@
+﻿@model YungChing.Models.houseSheet
+@{
+    ViewBag.Title = "detail";
+}
+
+<div style="margin:auto; margin-top:10px; border:solid 1px black;border-radius:20px; width:500px;">
+<div style="text-align:center;margin-top:10px;">
+<p>@Model.hName</p>
+<img style="width:498px;height:400px;" src="@Model.hPhoto"/>
+    <p style="text-align:left;margin-left:5%;margin-top:3%;">描述</p>
+    <div style="width:400px;height:100px;margin-left:5%;text-align:left;">
+        @Model.hText
+    </div>
+</div> 
+</div>
