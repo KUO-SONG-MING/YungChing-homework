@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "signIn";
+}
+
+<div style="margin-left:33%;">
+    <img style="width:400px;height:180px;" src="~/Content/永慶房仲網.png" />
+</div>
+<div style="width:250px;height:300px;margin-top:5%;margin-bottom:20%;margin-left:40%;">
+    <div style="height:10px;text-align:right;margin-bottom:10px;">
+        @Html.ActionLink("註冊", "signUp", "Home")
+    </div>
+    <form method="post" style="border:solid 1px black;">
+        <label style="margin-left:13%;margin-top:5%;">請輸入帳號</label>
+        <div style="text-align:center;">
+            <input type="text" name="uEmail" />
+        </div>
+        <label style="margin-left:13%;margin-top:5%;">請輸入密碼</label>
+        <div style="text-align:center;">
+            <input type="password" name="uPassword" />
+        </div>
+        <div style="text-align:center;margin-top:5px;margin-bottom:5px;">
+            <input type="submit" value="登入" />
+        </div>
+    </form>
+</div>
+
+@if (ViewBag.emailWrong == "emailWrong")
+{
+    <script>
+        alert("無此帳號");
+    </script>
+}
+
+@if (ViewBag.passwordWrong == "passwordWrong")
+{
+    <script>
+        alert("密碼錯誤");
+    </script>
+}
+

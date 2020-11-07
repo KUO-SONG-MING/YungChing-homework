@@ -1,0 +1,63 @@
+﻿@model IEnumerable<YungChing.Models.houseSheet>
+
+@{
+    ViewBag.Title = "mainPage";
+}
+
+<div style="text-align:right;">
+    <h4 id="userName"></h4>
+</div>
+
+@*@{int count = 0;}*@
+@if (Session["uname"] != null)
+{
+<script>
+        document.getElementById("userName").innerHTML = "@Session["uname"]"
+        @*if (@count == 0) {
+            alert("歡迎回來 @Session["uname"]");
+        }*@
+</script>
+    //count++;
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.hName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hPhoto)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="display:none;">
+                @Html.DisplayFor(modelItem => item.hId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hText)
+            </td>
+            <td>
+                <img src="@item.hPhoto"  style="width:150px;height:150px;">
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>

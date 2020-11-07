@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="永慶房屋Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="commercialSheet">
+          <Key>
+            <PropertyRef Name="cId" />
+          </Key>
+          <Property Name="cId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cDescribe" Type="nvarchar(max)" />
+          <Property Name="cPhoto" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="houseSheet">
+          <Key>
+            <PropertyRef Name="hId" />
+          </Key>
+          <Property Name="hId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="hText" Type="nvarchar" MaxLength="300" />
+          <Property Name="hPhoto" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="likeSheet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="describe" Type="nvarchar(max)" />
+          <Property Name="photo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="memberSheet">
+          <Key>
+            <PropertyRef Name="uId" />
+          </Key>
+          <Property Name="uId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="uEmail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="uPassword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="uAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="uAge" Type="int" />
+          <Property Name="uGender" Type="nvarchar" MaxLength="2" />
+          <Property Name="uPhoto" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityContainer Name="永慶房屋ModelStoreContainer">
+          <EntitySet Name="commercialSheet" EntityType="Self.commercialSheet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="houseSheet" EntityType="Self.houseSheet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="likeSheet" EntityType="Self.likeSheet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="memberSheet" EntityType="Self.memberSheet" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="永慶房屋Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="commercialSheet">
+          <Key>
+            <PropertyRef Name="cId" />
+          </Key>
+          <Property Name="cId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cDescribe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="houseSheet">
+          <Key>
+            <PropertyRef Name="hId" />
+          </Key>
+          <Property Name="hId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="hText" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="hPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="likeSheet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="memberSheet">
+          <Key>
+            <PropertyRef Name="uId" />
+          </Key>
+          <Property Name="uId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="uEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="uPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="uAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="uAge" Type="Int32" />
+          <Property Name="uGender" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="uPhoto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="永慶房屋Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="commercialSheet" EntityType="Self.commercialSheet" />
+          <EntitySet Name="houseSheet" EntityType="Self.houseSheet" />
+          <EntitySet Name="likeSheet" EntityType="Self.likeSheet" />
+          <EntitySet Name="memberSheet" EntityType="Self.memberSheet" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="永慶房屋ModelStoreContainer" CdmEntityContainer="永慶房屋Entities">
+          <EntitySetMapping Name="commercialSheet">
+            <EntityTypeMapping TypeName="永慶房屋Model.commercialSheet">
+              <MappingFragment StoreEntitySet="commercialSheet">
+                <ScalarProperty Name="cId" ColumnName="cId" />
+                <ScalarProperty Name="cName" ColumnName="cName" />
+                <ScalarProperty Name="cDescribe" ColumnName="cDescribe" />
+                <ScalarProperty Name="cPhoto" ColumnName="cPhoto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="houseSheet">
+            <EntityTypeMapping TypeName="永慶房屋Model.houseSheet">
+              <MappingFragment StoreEntitySet="houseSheet">
+                <ScalarProperty Name="hId" ColumnName="hId" />
+                <ScalarProperty Name="hName" ColumnName="hName" />
+                <ScalarProperty Name="hText" ColumnName="hText" />
+                <ScalarProperty Name="hPhoto" ColumnName="hPhoto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="likeSheet">
+            <EntityTypeMapping TypeName="永慶房屋Model.likeSheet">
+              <MappingFragment StoreEntitySet="likeSheet">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="describe" ColumnName="describe" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="memberSheet">
+            <EntityTypeMapping TypeName="永慶房屋Model.memberSheet">
+              <MappingFragment StoreEntitySet="memberSheet">
+                <ScalarProperty Name="uId" ColumnName="uId" />
+                <ScalarProperty Name="uName" ColumnName="uName" />
+                <ScalarProperty Name="uEmail" ColumnName="uEmail" />
+                <ScalarProperty Name="uPassword" ColumnName="uPassword" />
+                <ScalarProperty Name="uAddress" ColumnName="uAddress" />
+                <ScalarProperty Name="uAge" ColumnName="uAge" />
+                <ScalarProperty Name="uGender" ColumnName="uGender" />
+                <ScalarProperty Name="uPhoto" ColumnName="uPhoto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
