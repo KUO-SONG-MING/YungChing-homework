@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using YungChing.Models;
@@ -22,6 +23,7 @@ namespace YungChing.Controllers
             //說明:資料模型驗證必加判斷式
             if (ModelState.IsValid)
             {
+
                 //說明:使用者有上傳圖片才進入判斷
                 if (data.image != null)
                 {
@@ -38,7 +40,7 @@ namespace YungChing.Controllers
                 membersheet.uAddress = data.uAddress;
                 membersheet.uAge = data.uAge;
                 membersheet.uGender = data.uGender;
-                membersheet.uPhoto = data.uPhoto;             
+                membersheet.uPhoto = data.uPhoto;
                 db.memberSheet.Add(membersheet);
                 db.SaveChanges();
 
@@ -62,12 +64,12 @@ namespace YungChing.Controllers
             ViewBag.emailWrong = "";
             ViewBag.passwordWrong = "";
             //CMember cmember;
-            if (data.uEmail !=null && data.uPassword != null)
+            if (data.uEmail != null && data.uPassword != null)
             {
                 var q1 = from items in db.memberSheet
                          where data.uEmail == items.uEmail
                          select items;
-                
+
                 if (!q1.Any())
                 {
                     ViewBag.emailWrong = "emailWrong";
@@ -84,18 +86,58 @@ namespace YungChing.Controllers
                         ViewBag.passwordWrong = "passwordWrong";
                         return View();
                     }
-            
-                    else 
+
+                    else
                     {
-                       Session["uname"] = q2.FirstOrDefault().uName;
-                       Session["uphoto"] = q2.FirstOrDefault().uPhoto;
-                       Session["uid"] = q2.FirstOrDefault().uId.ToString();
-                       
-                       return RedirectToAction("mainPage", "Main");
+                        Session["uname"] = q2.FirstOrDefault().uName;
+                        Session["uphoto"] = q2.FirstOrDefault().uPhoto;
+                        Session["uid"] = q2.FirstOrDefault().uId.ToString();
+
+                        return RedirectToAction("mainPage", "Main");
                     }
                 }
             }
             return View();
+        }
+
+        [HttpGet]
+        public string checkEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                return "請輸入Email";
+            }
+            else if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)))
+            {
+                return "請輸入有效的Email格式";
+            }
+            else if (db.memberSheet.Any(item => item.uEmail == email))
+            {
+                return "此Email已被註冊";
+            }
+            else
+            {
+                return "OK";
+            }
+        }
+
+        [HttpPost]
+        public string checkPassword(string pw) 
+        {
+            if (!Regex.IsMatch(pw, @"^[^!@#$%^&*()_=+]*$", RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)))
+            {
+                return "密碼不能含有特殊字元";
+            }
+
+            else if (!Regex.IsMatch(pw, @"^[A-Za-z0-9]{6,12}$", RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)))
+            {
+                return "密碼長度需介於6~10碼";
+            }
+
+            else
+            {
+                return "ok";
+            }
         }
 
     }

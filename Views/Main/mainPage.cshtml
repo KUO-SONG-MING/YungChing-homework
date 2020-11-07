@@ -4,20 +4,102 @@
     ViewBag.Title = "mainPage";
 }
 
-@if (Session["uname"] != null)
-{
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+    <style>
+        .footer {
+            position: fixed;
+            z-index: 1;
+            left: 70%;
+            bottom: 0;
+            height: 20%;
+            width: 30%;
+            background-color: rgba(192, 192, 192, 0.6);
+            color: black;
+            text-align: center;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    @*https://localhost:44343/Main/detail/uid*@
+
     <script>
-        document.getElementById("userName").innerHTML = "@Session["uname"]"
-        document.getElementById("IMG").src = "@Session["uphoto"]"
+        var parameter = "";
+        var movementClassName = "";
+
+        function ADdetail(uid) {
+            //在Razor語法中傳遞js參數的寫法
+            var url = '@Url.Action("detail","Main",new {id = "_id_"})';
+            url = url.replace(/_id_/, uid);
+            window.location.href = url;
+        }
+
+        $(function () {
+            window.onload = function () {
+                $.ajax({
+                url: "@Url.Action("ShowAD", "Advertisement")",
+                    dataType: "json",
+                    type:"POST",
+                    success: function (response) {
+                        console.log(response);
+                        console.log(response.length);
+                        for (var i = 0; i < response.length; i+= 1)
+                        {
+                           parameter = response[i].hId;
+
+                            if (i == 0) {
+                                movementClassName = "active";
+                            }
+                            else
+                            {
+                                movementClassName = "";
+                            }
+
+                            var DIV = $("<div>").attr({
+                                'id': "DIV" + [i] + "",
+                                'class': "item " + movementClassName + "",
+                                'onclick': "ADdetail('" + parameter +"')"
+                            }).css({height:'140px',width:'379px'})
+                            var img = $("<img>").attr({
+                                'id': "AD" + [i] + "",
+                                'src': response[i].hPhoto,
+                                'align' :'left'
+                            }).css({ width: '230px', height: '140px',opacity:'0.9'})
+                            var content = $("<span style='font-size:15px;'>" + response[i].hText + "</span>")
+
+                            $(DIV).append(img);
+                            $(DIV).append(content);
+                            $("#inner_content").append(DIV);
+                        }
+                    },
+                    fail: function (response) {
+                        alert("失敗")
+                    }
+                });
+            }
+        });
     </script>
-}
 
     <div style="text-align:right;margin-bottom:10px;">
         <h4 id="userName"></h4>
         <img id="IMG" src="" style="width:40px;height:40px;border-radius:999em;" />
     </div>
 
-    <table class="table">
+    @if (Session["uname"] != null)
+    {
+        <script>
+        document.getElementById("userName").innerHTML = "@Session["uname"]"
+        document.getElementById("IMG").src = "@Session["uphoto"]"
+        </script>
+    }
+
+    <table class="table" style="margin-bottom:20%;margin-top:3%;">
         <tr>
             <th style="vertical-align: middle; text-align:center;">
                 建案名稱
@@ -38,8 +120,27 @@
                     <img src="@item.hPhoto" style="width:150px;height:150px;">
                 </td>
                 <td style="vertical-align: middle; text-align:center;">
-                    @Html.ActionLink("詳細資料", "detail", "main", new { id = item.hId.ToString() }, null)
+                    @Html.ActionLink("詳細資料", "detail", "Main", new { id = item.hId.ToString() }, null)
                 </td>
             </tr>
         }
     </table>
+
+    <div id="foot-content" class="footer">
+        <div id="current_position" value="" style="color:black;background-color:darkgoldenrod;border-top-left-radius:20px;border-top-right-radius:20px;opacity:0.8">
+            <b style="font-size:17px;color:black;">推薦地點</b>
+        </div>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div id="inner_content" class="carousel-inner" value=""></div>
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
