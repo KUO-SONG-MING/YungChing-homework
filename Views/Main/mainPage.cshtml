@@ -8,6 +8,9 @@
 <html>
 <head>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    @*sweetalert2 CDN*@
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
     <style>
         .footer {
@@ -85,19 +88,32 @@
             }
         });
     </script>
+    <script>
+        function myList()
+        {
+            window.location.href = '@Url.Action("EditMember","Edit2")'
+        }
+    </script>
 
     <div style="text-align:right;margin-bottom:10px;">
         <h4 id="userName"></h4>
-        <img id="IMG" src="" style="width:40px;height:40px;border-radius:999em;" />
+        <img id="IMG" src="" style="width:40px;height:40px;border-radius:999em;" onclick="myList()" />
+        <p>@Html.ActionLink("我的名單", "myList", "Main")</p>
+        <p>@Html.ActionLink("登出", "logOut", "Main")</p>
     </div>
-
-    @if (Session["uname"] != null)
-    {
-        <script>
+    <script>
         document.getElementById("userName").innerHTML = "@Session["uname"]"
         document.getElementById("IMG").src = "@Session["uphoto"]"
-        </script>
-    }
+    </script>
+
+    <div style="display:inline-block;margin-left:38%;">
+        <form method="post">
+            <p style="margin-left:20%; font-size:larger; font-weight:bold;">請輸入關鍵字</p>
+            <input type="text" name="keyword" />
+            <input type="submit" value="搜尋" class="btn btn-info" />
+
+        </form>
+    </div>
 
     <table class="table" style="margin-bottom:20%;margin-top:3%;">
         <tr>
@@ -122,6 +138,10 @@
                 <td style="vertical-align: middle; text-align:center;">
                     @Html.ActionLink("詳細資料", "detail", "Main", new { id = item.hId.ToString() }, null)
                 </td>
+                <td style="vertical-align: middle; text-align:center;">
+
+                    @Html.ActionLink("加入我的名單", "likeList", "Main", new { hid = item.hId.ToString() }, null)
+                </td>
             </tr>
         }
     </table>
@@ -144,3 +164,39 @@
     </div>
 </body>
 </html>
+
+@if (Session["result"] != null)
+{
+    if (Session["result"].ToString() == "no")
+    {
+
+        <script>
+            Swal.fire({
+                title: '我的名單裡已有此筆資料',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        </script>
+        Session["result"] = null;
+    }
+
+    else
+    {
+        <script>
+            Swal.fire({
+                title: '成功加入我的名單',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        </script>
+        Session["result"] = null;
+    }
+}

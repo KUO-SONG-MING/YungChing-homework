@@ -1,0 +1,44 @@
+﻿@model YungChing.Models.memberSheet
+@{
+    ViewBag.Title = "EditMember";
+}
+
+<h2>會員編輯</h2>
+
+<style>
+    .IMG {
+        height: 150px;
+        width: 150px;
+        border-radius: 999em;
+    }
+</style>
+<script>
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function () {
+            URL.revokeObjectURL(output.src) // free memory
+        };
+    };
+</script>
+
+<form method="post" action="EditMember" enctype="multipart/form-data">
+    <input type="hidden" name="uId" value="@Model.uId" />
+    <div>
+        <div>
+            <img class="IMG" src="@Model.uPhoto">
+        </div>
+        <div>
+            <input type="file" accept="image/*" onchange="loadFile(event)" class="form-control" name="image" value="上傳大頭貼" />
+        </div>
+    </div>
+    <div>
+        <label>暱稱</label>
+        <input type="text" name="uName" value="@Model.uName" />
+    </div>
+    <div>
+        <label>住址</label>
+        <input type="text" name="uAddress" value="@Model.uAddress" />
+    </div>
+    <input id="confirmChange" type="submit" value="確定修改" class="btn btn-warning" />
+</form>

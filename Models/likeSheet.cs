@@ -15,8 +15,7 @@ namespace YungChing.Models
     public partial class likeSheet
     {
         public int id { get; set; }
-        public string name { get; set; }
-        public string describe { get; set; }
-        public string photo { get; set; }
+        public int userID { get; set; }
+        public int houseID { get; set; }
     }
 }

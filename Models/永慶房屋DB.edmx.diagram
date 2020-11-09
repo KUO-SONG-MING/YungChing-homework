@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="194643099bb94ea090aebc8960b900d5" Name="Diagram1">
+      <Diagram DiagramId="0a4b271fa57a472f802f6c0b6696abf9" Name="Diagram1">
         <EntityTypeShape EntityType="永慶房屋Model.commercialSheet" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="永慶房屋Model.houseSheet" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="永慶房屋Model.likeSheet" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />

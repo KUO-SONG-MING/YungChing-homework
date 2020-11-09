@@ -63,7 +63,7 @@ namespace YungChing.Controllers
         {
             ViewBag.emailWrong = "";
             ViewBag.passwordWrong = "";
-            //CMember cmember;
+
             if (data.uEmail != null && data.uPassword != null)
             {
                 var q1 = from items in db.memberSheet

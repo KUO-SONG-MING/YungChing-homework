@@ -28,9 +28,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="describe" Type="nvarchar(max)" />
-          <Property Name="photo" Type="nvarchar" MaxLength="50" />
+          <Property Name="userID" Type="int" Nullable="false" />
+          <Property Name="houseID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="memberSheet">
           <Key>
@@ -79,9 +78,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <Property Name="houseID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="memberSheet">
           <Key>
@@ -132,9 +130,8 @@
             <EntityTypeMapping TypeName="永慶房屋Model.likeSheet">
               <MappingFragment StoreEntitySet="likeSheet">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="describe" ColumnName="describe" />
-                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="houseID" ColumnName="houseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
